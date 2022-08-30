@@ -22,13 +22,13 @@
                         <strong>Voto:</strong>
                         <i class="fa-solid fa-star"
                         v-for="(rating, index) in getRatings(film.vote_average)" 
-                        :key="index"
+                        :key="'c' + index"
                         >
                         </i>
 
                         <i class="fa-regular fa-star"
                         v-for="(rating, index) in (5 - getRatings(film.vote_average))" 
-                        :key="index"
+                        :key="'d' + index"
                         >
                         </i>
                     </li>
@@ -57,13 +57,13 @@
                         <strong>Voto:</strong>
                         <i class="fa-solid fa-star"
                         v-for="(rating, index) in getRatings(series.vote_average)" 
-                        :key="index"
+                        :key="'a' + index"
                         >
                         </i>
 
                         <i class="fa-regular fa-star"
                         v-for="(rating, index) in (5 - getRatings(series.vote_average))" 
-                        :key="index"
+                        :key="'b' + index"
                         >
                         </i>
                     </li>
@@ -84,7 +84,6 @@ export default {
     },
     methods: {
         getRatings(rating) {
-
             if (rating <= 2) {
                 return 1;
             } else if (rating > 2 && rating <= 4) {
