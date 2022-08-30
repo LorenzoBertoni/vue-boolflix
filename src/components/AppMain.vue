@@ -1,5 +1,8 @@
+//todo ****Refactoring, scomposizione del main in sottocomponenti****
+//todo ****Milestone 4, 5, 6****
 <template>
     <main>
+        <!-- ****Primo Componente**** -->
         <ul class="film-list">
             <li v-for="(film, index) in filmsList" :key="index" class="film">
                 <strong>Titolo:</strong> {{film.title}}
@@ -35,9 +38,14 @@
                 </ul>
             </li>
         </ul>
-
+        <!-- ****Primo Componente**** -->
+        
+        <!-- ****Secondo Componente**** -->
         <ul class="tv-series-list">
-            <li v-for="(series, index) in tvSeriesList" :key="index" class="series">
+            <li class="series" 
+            v-for="(series, index) in tvSeriesList" 
+            :key="index" 
+            >
                 <strong>Titolo:</strong> {{series.name}}
                 
                 <div class="poster-wrapper">
@@ -55,6 +63,7 @@
                     </li>
                     <li class="info">
                         <strong>Voto:</strong>
+
                         <i class="fa-solid fa-star"
                         v-for="(rating, index) in getRatings(series.vote_average)" 
                         :key="'a' + index"
@@ -70,6 +79,7 @@
                 </ul>
             </li>
         </ul>
+        <!-- ****Secondo Componente**** -->
     </main>
 </template>
 
