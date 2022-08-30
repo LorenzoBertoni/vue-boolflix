@@ -19,7 +19,18 @@
                         <strong>Lingua originale:</strong> {{film.original_language}}
                     </li>
                     <li class="info">
-                        <strong>Voto:</strong> {{film.vote_average}}
+                        <strong>Voto:</strong>
+                        <i class="fa-solid fa-star"
+                        v-for="(rating, index) in getRatings(film.vote_average)" 
+                        :key="index"
+                        >
+                        </i>
+
+                        <i class="fa-regular fa-star"
+                        v-for="(rating, index) in (5 - getRatings(film.vote_average))" 
+                        :key="index"
+                        >
+                        </i>
                     </li>
                 </ul>
             </li>
@@ -43,7 +54,18 @@
                         <strong>Lingua originale:</strong> {{series.original_language}}
                     </li>
                     <li class="info">
-                        <strong>Voto:</strong> {{series.vote_average}}
+                        <strong>Voto:</strong>
+                        <i class="fa-solid fa-star"
+                        v-for="(rating, index) in getRatings(series.vote_average)" 
+                        :key="index"
+                        >
+                        </i>
+
+                        <i class="fa-regular fa-star"
+                        v-for="(rating, index) in (5 - getRatings(series.vote_average))" 
+                        :key="index"
+                        >
+                        </i>
                     </li>
                 </ul>
             </li>
@@ -59,11 +81,29 @@ export default {
         searchInput: String,
         filmsList: Array,
         tvSeriesList: Array
+    },
+    methods: {
+        getRatings(rating) {
+
+            if (rating <= 2) {
+                return 1;
+            } else if (rating > 2 && rating <= 4) {
+                return 2;
+            } else if (rating > 4 && rating <= 6) {
+                return 3;
+            } else if (rating > 6 && rating <= 8) {
+                return 4;
+            } else if (rating > 8 && rating <= 10) {
+                return 5;
+            }
+        }
     }
 }
 </script>
 
 <style scoped lang="scss">
+@import '~@fortawesome/fontawesome-free/css/all.css';
+
     main {
         color: white;
         
