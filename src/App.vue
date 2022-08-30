@@ -3,11 +3,13 @@
     <AppHeader
     @searchInput="getInputFromHeader"
     @filmsList="getFilmsList"
+    @tvSeriesList="getTvSeriesList"
     />
 
     <AppMain
     :searchInput="headerSearchInput"
     :filmsList="headerFilmsList"
+    :tvSeriesList="headerSeriesList"
     />
 
   </div>
@@ -26,7 +28,8 @@ export default {
   data() {
     return {
       headerSearchInput: '',
-      headerFilmsList: []
+      headerFilmsList: [],
+      headerSeriesList: []
     }
   },
   methods: {
@@ -35,6 +38,9 @@ export default {
     },
     getFilmsList(headerFilmsList) {
       this.headerFilmsList = headerFilmsList;
+    },
+    getTvSeriesList(headerSeriesList) {
+      this.headerSeriesList = headerSeriesList;
     }
   }
 }
