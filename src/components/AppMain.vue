@@ -4,6 +4,13 @@
             <li v-for="(film, index) in filmsList" :key="index" class="film">
                 <strong>Titolo:</strong> {{film.title}}
 
+                <div class="poster-wrapper">
+                    <img 
+                    :src="'https://image.tmdb.org/t/p/w185' + film.poster_path" 
+                    :alt="film.title"
+                    >
+                </div>
+
                 <ul class="film-info">
                     <li class="info">
                         <strong>Titolo originale:</strong> {{film.original_title}}
@@ -21,6 +28,12 @@
         <ul class="tv-series-list">
             <li v-for="(series, index) in tvSeriesList" :key="index" class="series">
                 <strong>Titolo:</strong> {{series.name}}
+                
+                <div class="poster-wrapper">
+                    <img 
+                    :src="'https://image.tmdb.org/t/p/w185' + series.poster_path" 
+                    :alt="series.name">
+                </div>
 
                 <ul class="series-info">
                     <li class="info">
@@ -46,7 +59,7 @@ export default {
         searchInput: String,
         filmsList: Array,
         tvSeriesList: Array
-    },
+    }
 }
 </script>
 
@@ -65,6 +78,18 @@ export default {
                 background-color: gray;
                 padding: .5rem 1rem;
                 border-radius: .5rem;
+            }
+        }
+
+        .poster-wrapper {
+            width: 150px;
+            height: 150px;
+            border: 1px solid black;
+            margin: 0 auto;
+
+            img {
+                width: 100%;
+                height: 100%;
             }
         }
     }
