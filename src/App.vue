@@ -49,4 +49,8 @@ export default {
 @import '~@fortawesome/fontawesome-free/css/all.css';
 @import './styles/general.scss';
 @import './styles/singleComponents.scss';
+
+body {
+  background-color: gray;
+}
 </style>

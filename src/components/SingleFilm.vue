@@ -1,39 +1,56 @@
 <template>
-    <li>
-        <strong>Titolo:</strong> {{film.title}}
+    <div class="flip-card">
+        <div class="flip-card-inner">
+            <div class="flip-card-front">
+                <h1 v-if="film.poster_path == null">
+                    Locandina non disponibile per: 
+                    <span>{{series.name}}</span>
+                </h1>
 
-        <div class="poster-wrapper">
-            <img 
-            :src="'https://image.tmdb.org/t/p/w185' + film.poster_path" 
-            :alt="film.title"
-            >
+                <img 
+                :src="'https://image.tmdb.org/t/p/w342' + film.poster_path" 
+                :alt="film.title"
+                >
+            </div>
+
+            <div class="flip-card-back">
+                <div class="title">
+                    <strong>Titolo:</strong> 
+                    {{film.title}}
+                </div>
+
+                <div class="original-title">
+                    <strong>Titolo originale:</strong> 
+                    {{film.original_title}}
+                </div>
+
+                <div class="original-language">
+                    <strong>Lingua originale:</strong> {{film.original_language}}
+                </div>
+
+                <div class="rating">
+                    <strong>Voto:</strong>
+                    <i class="fa-solid fa-star"
+                    v-for="(rating, index) in getRatings(film.vote_average)" 
+                    :key="'a' + index"
+                    >
+                    </i>
+
+                    <i class="fa-regular fa-star"
+                    v-for="(rating, index) in (5 - getRatings(film.vote_average))" 
+                    :key="'b' + index"
+                    >
+                    </i>
+                </div>
+
+                <div class="overview">
+                    <strong>Trama:</strong>
+                    {{film.overview}}
+                    <span v-if="film.overview == '' ">Non disponibile</span>
+                </div>
+            </div>
         </div>
-
-        <ul class="film-info">
-            <li class="info">
-                <strong>Titolo originale:</strong> {{film.original_title}}
-            </li>
-
-            <li class="info">
-                <strong>Lingua originale:</strong> {{film.original_language}}
-            </li>
-            
-            <li class="info">
-                <strong>Voto:</strong>
-                <i class="fa-solid fa-star"
-                v-for="(rating, index) in getRatings(film.vote_average)" 
-                :key="'a' + index"
-                >
-                </i>
-
-                <i class="fa-regular fa-star"
-                v-for="(rating, index) in (5 - getRatings(film.vote_average))" 
-                :key="'b' + index"
-                >
-                </i>
-            </li>
-        </ul>
-    </li>
+    </div>
 </template>
 
 <script>
@@ -60,6 +77,6 @@ export default {
 }
 </script>
 
-<style>
-
+<style scoped lang="scss">
+    
 </style>

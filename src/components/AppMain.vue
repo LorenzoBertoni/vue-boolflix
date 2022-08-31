@@ -1,21 +1,18 @@
-//todo ****Milestone 4, 5, 6****
 <template>
     <main>
-        <ul class="film-list">
-            <SingleFilm 
-            class="film"
-            v-for="(film, index) in filmsList" 
-            :key="index" 
-            :film="film"/>
-        </ul>
+        <SingleFilm 
+        class="film"
+        v-for="(film, index) in filmsList" 
+        :key="index" 
+        :film="film"
+        />
 
-        <ul class="tv-series-list">
-            <SingleSerie
-            class="series"
-            v-for="(serie, index) in tvSeriesList"
-            :key="index"
-            :series="serie"/>
-        </ul>
+        <SingleSerie
+        class="series"
+        v-for="(serie, index) in tvSeriesList"
+        :key="'e' + index"
+        :series="serie"
+        />
     </main>
 </template>
 
@@ -41,20 +38,11 @@ export default {
 
     main {
         color: white;
-        
-        .film-list, .tv-series-list {
-            display: flex;
-            flex-wrap: wrap;
-            align-items: center;
-            gap: 1.5rem;
-            list-style: none;
-
-            .film, .series {
-                background-color: gray;
-                padding: .5rem 1rem;
-                border-radius: .5rem;
-            }
-        }
+        display: flex;
+        flex-wrap: wrap;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 2rem;
     }
 </style>
 

@@ -1,12 +1,19 @@
 <template>
     <header>
-        <input 
-        type="text" 
-        placeholder="Inserisci il titolo del film da cercare"
-        v-model="searchInput"
-        >
+        <div class="logo-wrapper">
+            <a href="#" class="logo">
+                BOOLFLIX
+            </a>
+        </div>
+        <div class="search-bar-wrapper">
+            <input 
+            type="text"
+            class="search-bar" 
+            placeholder="Cerca un film o serie TV"
+            v-model="searchInput"
+            @input="getLists">
 
-        <button @click="getLists">Cerca</button>
+        </div>
     </header>
 </template>
 
@@ -41,6 +48,9 @@ export default {
                     this.tvSeriesList = res.data.results;
                     this.$emit('tvSeriesList', this.tvSeriesList);
                 })
+                .catch(err => {
+                    console.log(err);
+                })
             }
         }
     }
@@ -49,9 +59,26 @@ export default {
 
 <style scoped lang="scss">
     header {
-        position: sticky;
-        top: 0;
-        left: 0;
+        background-color: #000;
+        padding: 1rem;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        .logo-wrapper {
+            .logo {
+                font-size: 2rem;
+                color: red;
+                text-decoration: none;
+
+            }
+        }
+
+        .search-bar-wrapper {
+            .search-bar {
+                padding: .5rem 3rem;
+            }
+        }
         
         button {
             margin-left: 10px;
