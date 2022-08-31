@@ -53,5 +53,6 @@ export default {
 
 body {
   background-color: gray;
+  font-family: sans-serif;
 }
 </style>

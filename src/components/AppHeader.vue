@@ -41,7 +41,7 @@ export default {
             tvSeriesList: [],
             genreList: [],
             searchInput: '',
-            selectedGenre: null
+            selectedGenre: null,
         }
     },
     methods: {

@@ -57,16 +57,35 @@
                     {{series.overview}}
                     <span v-if="series.overview == '' ">Non disponibile</span>
                 </div>
+
+                <div class="cast">
+                    <strong>Cast:</strong>
+                    <ul>
+                        <li v-if="cast.length == 0">Non disponibile</li>
+                        <li v-if="cast.length >= 1">{{cast[0].name}}</li>
+                        <li v-if="cast.length >= 2">{{cast[1].name}}</li>
+                        <li v-if="cast.length >= 3">{{cast[2].name}}</li>
+                        <li v-if="cast.length >= 4">{{cast[3].name}}</li>
+                        <li v-if="cast.length >= 5">{{cast[4].name}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'SingleSerie',
     props: {
         series: Object
+    },
+    data() {
+        return {
+            cast: []
+        }
     },
     methods: {
         getRatings(rating) {
@@ -81,7 +100,16 @@ export default {
             } else if (rating > 8 && rating <= 10) {
                 return 5;
             }
+        },
+        getCast() {
+            axios.get('https://api.themoviedb.org/3/tv/' + this.series.id + '/credits?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it_IT')
+            .then(cast => {
+                this.cast = cast.data.cast;
+            })
         }
+    },
+    mounted() {
+        this.getCast();
     }
 }
 </script>
