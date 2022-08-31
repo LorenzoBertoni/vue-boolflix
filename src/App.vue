@@ -11,7 +11,6 @@
     :filmsList="headerFilmsList"
     :tvSeriesList="headerSeriesList"
     />
-
   </div>
 </template>
 
@@ -48,5 +47,6 @@ export default {
 
 <style lang="scss">
 @import '~@fortawesome/fontawesome-free/css/all.css';
-
+@import './styles/general.scss';
+@import './styles/singleComponents.scss';
 </style>
