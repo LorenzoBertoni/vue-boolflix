@@ -26,7 +26,15 @@
 
                 <div class="original-language">
                     <strong>Lingua originale:</strong>
-                    <span class="fi" :class="'fi-' + series.original_language"></span>
+                    <span class="fi" 
+                    :class="(series.original_language == 'en')? 'fi-gb' :'fi-' + series.original_language"
+                    v-if="series.original_language != 'ja'">
+                    </span>
+
+                    <span class="fi" 
+                    :class="(series.original_language == 'ja')? 'fi-jp' : '' "
+                    v-if="series.original_language == 'ja'">
+                    </span>
                 </div>
 
                 <div class="rating">

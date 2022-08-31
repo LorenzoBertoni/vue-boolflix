@@ -26,7 +26,15 @@
 
                 <div class="original-language">
                     <strong>Lingua originale:</strong>
-                    <span class="fi" :class="'fi-' + film.original_language"></span>
+                    <span class="fi" 
+                    :class="(film.original_language == 'en')? 'fi-gb':'fi-' + film.original_language"
+                    v-if="film.original_language != 'ja'">
+                    </span>
+
+                    <span class="fi" 
+                    :class="(film.original_language == 'ja')? 'fi-jp' : '' "
+                    v-if="film.original_language == 'ja'">
+                    </span>
                 </div>
 
                 <div class="rating">
