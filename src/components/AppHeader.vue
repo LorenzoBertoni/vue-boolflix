@@ -5,7 +5,7 @@
                 BOOLFLIX
             </a>
         </div>
-        <div class="search-bar-wrapper">
+        <div class="search-wrapper">
             <input 
             type="text"
             class="search-bar" 
@@ -13,6 +13,19 @@
             v-model="searchInput"
             @input="getLists">
 
+            <select 
+            name="genres" 
+            id="genres"
+            v-model="selectedGenre"
+            >
+                <option value="reset"></option>
+                <option 
+                v-for="genre in genreList"
+                :key="genre.id"
+                :value="genre.name"
+                >
+                {{genre.name}}</option>
+            </select>
         </div>
     </header>
 </template>
@@ -26,7 +39,9 @@ export default {
         return {
             filmsList: [],
             tvSeriesList: [],
-            searchInput: ''
+            genreList: [],
+            searchInput: '',
+            selectedGenre: null
         }
     },
     methods: {
@@ -52,7 +67,16 @@ export default {
                     console.log(err);
                 })
             }
+        },
+        getGenres() {
+            axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it_IT')
+            .then(resp => {
+                this.genreList = resp.data.genres;
+            })
         }
+    },
+    mounted() {
+        this.getGenres();
     }
 }
 </script>
@@ -74,9 +98,10 @@ export default {
             }
         }
 
-        .search-bar-wrapper {
-            .search-bar {
+        .search-wrapper {
+            .search-bar, #genres {
                 padding: .5rem 3rem;
+                margin: 0 .5rem;
             }
         }
         

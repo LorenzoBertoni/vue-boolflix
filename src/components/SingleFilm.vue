@@ -4,7 +4,7 @@
             <div class="flip-card-front">
                 <h1 v-if="film.poster_path == null">
                     Locandina non disponibile per: 
-                    <span>{{film.name}}</span>
+                    <span>{{film.title}}</span>
                 </h1>
 
                 <img 
@@ -57,16 +57,34 @@
                     {{film.overview}}
                     <span v-if="film.overview == '' ">Non disponibile</span>
                 </div>
+
+                <div class="cast">
+                    <strong>Cast:</strong>
+                    <ul>
+                        <li>{{cast[0].name}}</li>
+                        <li>{{cast[1].name}}</li>
+                        <li>{{cast[2].name}}</li>
+                        <li>{{cast[3].name}}</li>
+                        <li>{{cast[4].name}}</li>
+                    </ul>
+                </div>
             </div>
         </div>
     </div>
 </template>
 
 <script>
+import axios from 'axios';
+
 export default {
     name: 'SingleFilm',
     props: {
         film: Object
+    },
+    data() {
+        return {
+            cast: []
+        }
     },
     methods: {
         getRatings(rating) {
@@ -81,7 +99,16 @@ export default {
             } else if (rating > 8 && rating <= 10) {
                 return 5;
             }
+        },
+        getCast() {
+            axios.get('https://api.themoviedb.org/3/movie/' + this.film.id + '/credits?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it_IT')
+            .then(cast => {
+                this.cast = cast.data.cast;
+            })
         }
+    },
+    mounted() {
+        this.getCast();
     }
 }
 </script>
