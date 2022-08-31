@@ -4,7 +4,7 @@
             <div class="flip-card-front">
                 <h1 v-if="film.poster_path == null">
                     Locandina non disponibile per: 
-                    <span>{{series.name}}</span>
+                    <span>{{film.name}}</span>
                 </h1>
 
                 <img 
@@ -25,7 +25,8 @@
                 </div>
 
                 <div class="original-language">
-                    <strong>Lingua originale:</strong> {{film.original_language}}
+                    <strong>Lingua originale:</strong>
+                    <span class="fi" :class="'fi-' + film.original_language"></span>
                 </div>
 
                 <div class="rating">
