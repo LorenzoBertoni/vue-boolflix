@@ -25,7 +25,8 @@
                 </div>
 
                 <div class="original-language">
-                    <strong>Lingua originale:</strong> {{series.original_language}}
+                    <strong>Lingua originale:</strong>
+                    <span class="fi" :class="'fi-' + series.original_language"></span>
                 </div>
 
                 <div class="rating">

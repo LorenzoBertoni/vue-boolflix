@@ -4,6 +4,7 @@
     height: 500px;
     perspective: 1000px; 
     cursor: pointer;
+    overflow: hidden;
 
     .flip-card-inner {
         position: relative;
@@ -48,6 +49,10 @@
             .rating, .overview {
                 margin-left: .5rem;
                 margin-bottom: .8rem;
+            }
+
+            .fi {
+                margin-left: .5rem;
             }
         }
     }
