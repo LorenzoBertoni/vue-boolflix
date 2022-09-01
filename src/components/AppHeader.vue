@@ -19,7 +19,7 @@
             v-model="selectedGenre"
             @change="$emit('genreId', selectedGenre)"
             >
-                <option :value="null"></option>
+                <option :value="null">Tutti i generi</option>
                 <option 
                 v-for="(genre, index) in genreList"
                 :key="index"
@@ -38,6 +38,7 @@ export default {
     name: 'AppHeader',
     data() {
         return {
+            ApiUrl: 'https://api.themoviedb.org/3',
             filmsList: [],
             tvSeriesList: [],
             genreList: [],
@@ -48,8 +49,17 @@ export default {
     methods: {
         getLists() {
             if(!this.searchInput == '') {
-                //Film
-                axios.get('https://api.themoviedb.org/3/search/movie?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it-IT&query=' + this.searchInput)
+
+                const paramsObj = {
+                    params: {
+                            api_key: '3fe6fc37252265374a6f243cf78a5b9f',
+                            language: 'it-IT',
+                            query: this.searchInput
+                        }
+                }
+
+                //**Film**
+                axios.get(this.ApiUrl + '/search/movie', paramsObj)
                 .then(response => {
                     this.filmsList = response.data.results;
                     this.$emit('searchInput', this.searchInput);
@@ -58,8 +68,9 @@ export default {
                 .catch(error => {
                     console.log(error);
                 })
-                //serie TV
-                axios.get('https://api.themoviedb.org/3/search/tv?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it-IT&query=' + this.searchInput)
+
+                //**serie TV**
+                axios.get(this.ApiUrl + '/search/tv', paramsObj)
                 .then(res => {
                     this.tvSeriesList = res.data.results;
                     this.$emit('tvSeriesList', this.tvSeriesList);
@@ -70,7 +81,7 @@ export default {
             }
         },
         getGenres() {
-            axios.get('https://api.themoviedb.org/3/genre/movie/list?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it_IT')
+            axios.get(this.ApiUrl + '/genre/movie/list?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it_IT')
             .then(resp => {
                 this.genreList = resp.data.genres;
             })
@@ -95,7 +106,6 @@ export default {
                 font-size: 2rem;
                 color: red;
                 text-decoration: none;
-
             }
         }
 
@@ -103,6 +113,8 @@ export default {
             .search-bar, #genres {
                 padding: .5rem 3rem;
                 margin: 0 .5rem;
+                font-size: 1rem;
+                font-family: 'Franklin Gothic Medium', 'Arial Narrow', Arial, sans-serif;
             }
         }
         

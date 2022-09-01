@@ -2,10 +2,10 @@
         <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <h1 v-if="series.poster_path == null">
-                    Locandina non disponibile per: 
-                    <span>{{series.name}}</span>
-                </h1>
+                <div class="poster-fallback" v-if="series.poster_path == null">
+                    <h1>Locandina non disponibile per:</h1>
+                    <h1>"{{series.name}}"</h1>
+                </div>
 
                 <img 
                 :src="'https://image.tmdb.org/t/p/w342' + series.poster_path" 
@@ -107,13 +107,10 @@ export default {
                 console.log(error);
             })
         }
-    },
-    mounted() {
-        this.getCast();
     }
 }
 </script>
 
-<style scoped lang="scss">
+<style>
     
 </style>

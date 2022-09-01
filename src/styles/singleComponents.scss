@@ -24,7 +24,12 @@
             background-color: #bbb;
             color: black;
 
-            h1 {
+            .poster-fallback {
+                display: flex;
+                flex-direction: column;
+                justify-content: center;
+                height: 100%;
+                gap: .5rem;
                 text-align: center;
             }
 

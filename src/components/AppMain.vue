@@ -58,7 +58,6 @@ export default {
 </script>
 
 <style scoped lang="scss">
-
     main {
         color: white;
         margin-top: 2rem;

@@ -2,11 +2,11 @@
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <h1 v-if="film.poster_path == null">
-                    Locandina non disponibile per: 
-                    <span>{{film.title}}</span>
-                </h1>
-
+                <div class="poster-fallback" v-if="film.poster_path == null">
+                    <h1>Locandina non disponibile per:</h1>
+                    <h1>"{{film.title}}"</h1>
+                </div>
+                
                 <img 
                 :src="'https://image.tmdb.org/t/p/w342' + film.poster_path" 
                 :alt="film.title"
@@ -107,6 +107,6 @@ export default {
 }
 </script>
 
-<style scoped lang="scss">
+<style>
     
 </style>
