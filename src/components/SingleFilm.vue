@@ -2,7 +2,10 @@
     <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <div class="poster-fallback" v-if="film.poster_path == null">
+                <div 
+                class="poster-fallback" 
+                v-if="film.poster_path == null"
+                >
                     <h1>Locandina non disponibile per:</h1>
                     <h1>"{{film.title}}"</h1>
                 </div>
@@ -90,7 +93,7 @@ export default {
     },
     data() {
         return {
-            cast: []
+            cast: [],
         }
     },
     methods: {

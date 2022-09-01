@@ -1,6 +1,8 @@
 <template>
     <main>
-        <div class="fallback" v-if="(filmsList.length == 0 && tvSeriesList.length == 0)">
+        <div class="fallback" 
+        v-if="(filmsList.length == 0 && tvSeriesList.length == 0)"
+        >
             <h1>Scrivi il titolo di un film o di una serie tv per cominciare la ricerca</h1>
         </div>
 

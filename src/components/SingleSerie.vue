@@ -2,7 +2,9 @@
         <div class="flip-card">
         <div class="flip-card-inner">
             <div class="flip-card-front">
-                <div class="poster-fallback" v-if="series.poster_path == null">
+                <div class="poster-fallback" 
+                v-if="series.poster_path == null"
+                >
                     <h1>Locandina non disponibile per:</h1>
                     <h1>"{{series.name}}"</h1>
                 </div>
@@ -28,7 +30,8 @@
                     <strong>Lingua originale:</strong>
                     <span class="fi" 
                     :class="(series.original_language == 'en')? 'fi-gb' :'fi-' + series.original_language"
-                    v-if="series.original_language != 'ja'">
+                    v-if="series.original_language != 'ja'"
+                    >
                     </span>
 
                     <span class="fi" 

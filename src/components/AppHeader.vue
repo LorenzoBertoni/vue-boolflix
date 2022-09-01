@@ -49,7 +49,6 @@ export default {
     methods: {
         getLists() {
             if(!this.searchInput == '') {
-
                 const paramsObj = {
                     params: {
                             api_key: '3fe6fc37252265374a6f243cf78a5b9f',
@@ -57,7 +56,6 @@ export default {
                             query: this.searchInput
                         }
                 }
-
                 //**Film**
                 axios.get(this.ApiUrl + '/search/movie', paramsObj)
                 .then(response => {
@@ -68,7 +66,6 @@ export default {
                 .catch(error => {
                     console.log(error);
                 })
-
                 //**serie TV**
                 axios.get(this.ApiUrl + '/search/tv', paramsObj)
                 .then(res => {
