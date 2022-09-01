@@ -17,12 +17,13 @@
             name="genres" 
             id="genres"
             v-model="selectedGenre"
+            @change="$emit('genreId', selectedGenre)"
             >
-                <option value="reset"></option>
+                <option :value="null"></option>
                 <option 
-                v-for="genre in genreList"
-                :key="genre.id"
-                :value="genre.name"
+                v-for="(genre, index) in genreList"
+                :key="index"
+                :value="genre.id"
                 >
                 {{genre.name}}</option>
             </select>
@@ -47,6 +48,7 @@ export default {
     methods: {
         getLists() {
             if(!this.searchInput == '') {
+                //Film
                 axios.get('https://api.themoviedb.org/3/search/movie?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it-IT&query=' + this.searchInput)
                 .then(response => {
                     this.filmsList = response.data.results;
@@ -56,9 +58,8 @@ export default {
                 .catch(error => {
                     console.log(error);
                 })
-
-                axios.get('https://api.themoviedb.org/3/search/tv?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it-IT&query=' +
-                this.searchInput)
+                //serie TV
+                axios.get('https://api.themoviedb.org/3/search/tv?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it-IT&query=' + this.searchInput)
                 .then(res => {
                     this.tvSeriesList = res.data.results;
                     this.$emit('tvSeriesList', this.tvSeriesList);

@@ -4,13 +4,13 @@
     @searchInput="getInputFromHeader"
     @filmsList="getFilmsList"
     @tvSeriesList="getTvSeriesList"
-    />
+    @genreId="getGenreFromHeader"/>
 
     <AppMain
     :searchInput="headerSearchInput"
     :filmsList="headerFilmsList"
     :tvSeriesList="headerSeriesList"
-    />
+    :genreId="headerGenreId"/>
   </div>
 </template>
 
@@ -29,7 +29,8 @@ export default {
     return {
       headerSearchInput: '',
       headerFilmsList: [],
-      headerSeriesList: []
+      headerSeriesList: [],
+      headerGenreId: null
     }
   },
   methods: {
@@ -41,6 +42,9 @@ export default {
     },
     getTvSeriesList(headerSeriesList) {
       this.headerSeriesList = headerSeriesList;
+    },
+    getGenreFromHeader(headerGenres) {
+      this.headerGenreId = headerGenres;
     }
   }
 }

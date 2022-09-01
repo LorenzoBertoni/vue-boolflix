@@ -33,7 +33,7 @@
 
                     <span class="fi" 
                     :class="(film.original_language == 'ja')? 'fi-jp' : '' "
-                    v-if="film.original_language == 'ja'">
+                    v-else-if="film.original_language == 'ja'">
                     </span>
                 </div>
 
@@ -86,7 +86,7 @@ import axios from 'axios';
 export default {
     name: 'SingleFilm',
     props: {
-        film: Object
+        film: Object,
     },
     data() {
         return {
@@ -95,17 +95,7 @@ export default {
     },
     methods: {
         getRatings(rating) {
-            if (rating <= 2) {
-                return 1;
-            } else if (rating > 2 && rating <= 4) {
-                return 2;
-            } else if (rating > 4 && rating <= 6) {
-                return 3;
-            } else if (rating > 6 && rating <= 8) {
-                return 4;
-            } else if (rating > 8 && rating <= 10) {
-                return 5;
-            }
+            return Math.ceil(rating / 2);
         },
         getCast() {
             axios.get('https://api.themoviedb.org/3/movie/' + this.film.id + '/credits?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it_IT')
