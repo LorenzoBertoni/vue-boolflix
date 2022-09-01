@@ -60,8 +60,14 @@
                 
                 <div class="cast">
                     <strong>Cast:</strong>
+
+                    <span @click="getCast">Vedi cast</span>
+
                     <ul>
-                        <li v-if="cast.length == 0">Non disponibile</li>
+                        <li v-if="cast.length == 0"
+                        style="list-style: none;"
+                        >
+                        </li>
                         <li v-if="cast.length >= 1">{{cast[0].name}}</li>
                         <li v-if="cast.length >= 2">{{cast[1].name}}</li>
                         <li v-if="cast.length >= 3">{{cast[2].name}}</li>
@@ -101,18 +107,13 @@ export default {
                 return 5;
             }
         },
-        //!
         getCast() {
             axios.get('https://api.themoviedb.org/3/movie/' + this.film.id + '/credits?api_key=3fe6fc37252265374a6f243cf78a5b9f&language=it_IT')
             .then(cast => {
                 this.cast = cast.data.cast;
             })
-        }//!
-    },
-    //!
-    mounted() {
-        this.getCast();
-    }//!
+        }
+    }
 }
 </script>
 
